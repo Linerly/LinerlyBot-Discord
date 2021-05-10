@@ -1,6 +1,8 @@
+print("Preparing the bot...")
 import discord
 import os
 import random
+print("Initializing Repl.it database...")
 from replit import db
 from discord.ext import commands
 
@@ -11,7 +13,6 @@ client.remove_command('help')
 
 @client.event
 async def on_ready():
-  db["currency"] = "10"
   activity = discord.Game(name = "in some servers", type=1)
   await client.change_presence(status=discord.Status.online, activity=activity)
 
@@ -52,10 +53,10 @@ async def help(ctx, args=None):
 @client.command(help = "Tells you about the bot.")
 async def about(ctx):
   embed = discord.Embed(color=0x1e90ff)
-  embed.set_author(name = "LinerlyBot", url = "https://linerly.github.io/linerlybot",  icon_url = "https://cdn.discordapp.com/avatars/833343953238884372/9a1c25da7ec625a7ae63f390fa05f7ea.png")
+  embed.set_author(name = "LinerlyBot", url = "https://linerly.github.io/linerlybot",  icon_url = "https://cdn.discordapp.com/attachments/801291355707932672/841213994132176916/invert.png")
   embed.add_field(
     name = "A new version of LinerlyBot which uses Discord.py instead of Discord.js.",
-    value = "Previous LinerlyBot commands will be added back in the rewritten version! \n \n [Website](https://linerly.github.io/linerlybot) \n [Add Bot to your Server](https://discord.com/oauth2/authorize?client_id=833343953238884372&scope=bot&permissions=18432) \n [Source Code](https://replit.com/@Linerly/linerlybot-rewritten)"
+    value = "Previous LinerlyBot commands will be added back in the rewritten version! \n \n [Website](https://linerly.github.io/linerlybot) \n [Add Bot to your Server](https://discord.com/oauth2/authorize?client_id=833343953238884372&scope=bot&permissions=18432) \n [Source Code](https://github.com/Linerly/linerlybot-rewritten)"
   )
 
   await ctx.send(embed=embed)
@@ -64,7 +65,7 @@ async def about(ctx):
 async def ping(ctx):
   ping = str(round(client.latency * 1000))
   embed = discord.Embed(title="Pong!", description=ping + " ms.", color=0x1e90ff)
-  embed.set_author(name = "LinerlyBot", url = "https://linerly.github.io/linerlybot",  icon_url = "https://cdn.discordapp.com/avatars/833343953238884372/9a1c25da7ec625a7ae63f390fa05f7ea.png")
+  embed.set_author(name = "LinerlyBot", url = "https://linerly.github.io/linerlybot",  icon_url = "https://cdn.discordapp.com/attachments/801291355707932672/841213994132176916/invert.png")
   await ctx.send(embed=embed)
 
 @client.command(help = "I can show you what I'm feeling now.")
