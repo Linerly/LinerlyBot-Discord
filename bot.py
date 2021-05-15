@@ -2,9 +2,8 @@ print("Preparing the bot...")
 import discord
 import os
 import random
+from decouple import config
 
-print("Initializing Repl.it database...")
-from replit import db
 from discord.ext import commands
 
 client = discord.Client()
@@ -63,7 +62,7 @@ async def feeling(ctx):
 
 @client.command(help="(for testing purposes only)")
 async def bank(ctx):
-  value = db["currency"]
+  value = 10
   await ctx.send("Bank: <:gold:752147412445036645> " + value)
 
-client.run(os.environ['Token'])
+client.run(config['TOKEN'])
