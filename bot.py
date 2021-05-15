@@ -1,6 +1,7 @@
 print("Preparing the bot...")
 import discord
 import os
+import datetime, time
 import json
 import random
 
@@ -16,7 +17,10 @@ client.remove_command('help')
 
 @client.event
 async def on_ready():
-    activity = discord.Game(name = "in some servers", type = 1)
+    global start_time
+    start_time = time.time()
+
+    activity = discord.Activity(name = "requests and responding to them", type = discord.ActivityType.listening)
     await client.change_presence(status = discord.Status.online, activity = activity)
     print("I should be ready now!")
 
@@ -82,11 +86,26 @@ def get_gold_balance(member: discord.Member):
     data = json.load(fp)
   return data[f"{member.id}"]["gold"]
 
-@client.command(help="Check your balance by using the command.")
+@client.command(help = "Check your balance by using the command.")
 async def balance(ctx):
   gold_balance = str(get_gold_balance(ctx.author))
   embed = discord.Embed(title = "You currently have...", description = "<:gold:752147412445036645> " + gold_balance, color = 0x1e90ff)
   embed.set_author(name = "LinerlyBot", url = "https://linerly.github.io/linerlybot", icon_url = "https://cdn.discordapp.com/attachments/801291355707932672/841213994132176916/invert.png")
+  await ctx.send(embed = embed)
+
+@client.command(help = "Shows some info about the bot.")
+async def info(ctx):
+  uptime = str(datetime.timedelta(seconds=int(round(time.time()-start_time))))
+  ping = str(round(client.latency * 1000))
+
+  embed = discord.Embed(title = "Bot Info", color = 0x1e90ff)
+  embed.set_author(name = "LinerlyBot", url = "https://linerly.github.io/linerlybot", icon_url = "https://cdn.discordapp.com/attachments/801291355707932672/841213994132176916/invert.png")
+
+  embed.add_field(name = "Bot Uptime", value = ":green_circle: " + uptime)
+
+  embed.add_field(name = "Servers", value = ":desktop: ...in " + str(len(client.guilds)) + " servers")
+
+  embed.add_field(name = "Latency", value = ":globe_with_meridians: " + ping + " ms")
   await ctx.send(embed = embed)
 
 client.run(config('TOKEN'))
