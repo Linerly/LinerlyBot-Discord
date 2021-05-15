@@ -3,6 +3,7 @@ import discord
 import os
 import json
 import random
+
 from decouple import config
 
 from discord.ext import commands
@@ -63,7 +64,7 @@ async def feeling(ctx):
 def add_gold_balance(member: discord.Member, amount):
   if os.path.isfile("bank.json"):
     with open("bank.json", "r") as fp:
-      print("Reading JSON database...")
+      print("Loading JSON database...")
       data = json.load(fp)
     try:
       data[f"{member.id}"]["gold"] += amount
@@ -72,7 +73,7 @@ def add_gold_balance(member: discord.Member, amount):
   else:
     data = {f"{member.id}": {"gold": amount}}
     with open("bank.json", "w+") as fp:
-      print("Writing JSON database...")
+      print("Writing to JSON database...")
       json.dump(data, fp)
 
 def get_gold_balance(member: discord.Member):
@@ -83,8 +84,9 @@ def get_gold_balance(member: discord.Member):
 
 @client.command(help="Check your balance by using the command.")
 async def balance(ctx):
-  embed = discord.Embed(title = "You currently have...", description = "<:gold:752147412445036645> " + str(get_gold_balance(ctx.author)), color = 0x1e90ff)
-  embed.set_author(name = "LinerlyBot", url = "https://linerly.github.io/linerlybot", icon_ur>
+  gold_balance = str(get_gold_balance(ctx.author))
+  embed = discord.Embed(title = "You currently have...", description = "<:gold:752147412445036645> " + gold_balance, color = 0x1e90ff)
+  embed.set_author(name = "LinerlyBot", url = "https://linerly.github.io/linerlybot", icon_url = "https://cdn.discordapp.com/attachments/801291355707932672/841213994132176916/invert.png")
   await ctx.send(embed = embed)
 
 client.run(config('TOKEN'))
