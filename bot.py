@@ -1,6 +1,7 @@
 print("Preparing the bot...")
 import discord
 import os
+import json
 import random
 from decouple import config
 
@@ -59,10 +60,31 @@ async def feeling(ctx):
   feelings = [':slight_smile:', ':upside_down:', ':woozy_face:', ':confused:', ':sleeping:', ':rolling_eyes:', ':smiling_face_with_tear:', ':no_mouth:']
   await ctx.send(random.choice(feelings))
 
+def add_gold_balance(member: discord.Member, amount):
+  if os.path.isfile("bank.json"):
+    with open("bank.json", "r") as fp:
+      print("Reading JSON database...")
+      data = json.load(fp)
+    try:
+      data[f"{member.id}"]["gold"] += amount
+    except KeyError:
+      data[f"{member.id}"] = {"gold": amount}
+  else:
+    data = {f"{member.id}": {"gold": amount}}
+    with open("bank.json", "w+") as fp:
+      print("Writing JSON database...")
+      json.dump(data, fp)
 
-@client.command(help="(for testing purposes only)")
-async def bank(ctx):
-  value = 10
-  await ctx.send("Bank: <:gold:752147412445036645> " + value)
+def get_gold_balance(member: discord.Member):
+  with open("bank.json", "r") as fp:
+    print("Accessing JSON database...")
+    data = json.load(fp)
+  return data[f"{member.id}"]["gold"]
 
-client.run(config['TOKEN'])
+@client.command(help="Check your balance by using the command.")
+async def balance(ctx):
+  embed = discord.Embed(title = "You currently have...", description = "<:gold:752147412445036645> " + str(get_gold_balance(ctx.author)), color = 0x1e90ff)
+  embed.set_author(name = "LinerlyBot", url = "https://linerly.github.io/linerlybot", icon_ur>
+  await ctx.send(embed = embed)
+
+client.run(config('TOKEN'))
