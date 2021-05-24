@@ -50,7 +50,7 @@ async def help(ctx, args = None):
 async def about(ctx):
     embed = discord.Embed(color = 0x1e90ff)
     embed.set_author(name = "LinerlyBot", url = "https://linerly.github.io/linerlybot", icon_url = "https://linerly.github.io/assets/linerlybot/linerlybot.jpg")
-    embed.add_field(name = "A new version of LinerlyBot which uses Discord.py instead of Discord.js.", value = "Previous LinerlyBot commands will be added back in the rewritten version! \n \n [Website](https://linerly.github.io/linerlybot) \n [Add Bot to your Server](https://discord.com/oauth2/authorize?client_id=833343953238884372&scope=bot&permissions=18432) \n [Source Code](https://github.com/Linerly/linerlybot-rewritten)")
+    embed.add_field(name = "A new version of LinerlyBot which uses Discord.py instead of Discord.js.", value = "Previous LinerlyBot commands will be added back in the rewritten version! \n \n [Website](https://linerly.github.io/linerlybot) \n [Add LinerlyBot to your Discord Server](https://discord.com/oauth2/authorize?client_id=529566778293223434&scope=bot&permissions=18432) \n [Source Code](https://github.com/Linerly/linerlybot-rewritten)")
     await ctx.send(embed = embed)
 
 
@@ -103,7 +103,7 @@ async def balance(ctx):
 
     embed = discord.Embed(title = "You currently have...", description = "<:gold:752147412445036645> " + gold_balance, color = 0x1e90ff)
     embed.set_author(name = "LinerlyBot", url = "https://linerly.github.io/linerlybot", icon_url = "https://linerly.github.io/assets/linerlybot/linerlybot.jpg")
-    embed.add_field(name = "", value = "(please be aware that new users that isn't in the database will result in an error!)")
+    embed.add_field(name = "_ _", value = "Please be aware that new users that isn't in the database will result in an internal error!")
     await ctx.send(embed = embed)
 
 @client.command(help = "Get some gold by working!")
@@ -113,7 +113,8 @@ async def work(ctx):
 
     embed = discord.Embed(title = "Working", description = ctx.author.mention +", you work as a " + job + " and you got " + "<:gold:752147412445036645> " + str(gold) + " for working!", color = 0x1e90ff)
     embed.set_author(name = "LinerlyBot", url = "https://linerly.github.io/linerlybot", icon_url = "https://linerly.github.io/assets/linerlybot/linerlybot.jpg")
-    embed.add_field(name = "", value = "(please be aware that new users that isn't in the database will result in an error!)")
+    embed.add_field(name = "_ _", value = "Please be aware that new users that isn't in the database will result in an internal error!")
+
     add_gold_balance(ctx.author, get_gold_balance(ctx.author) + gold)
 
     await ctx.send(embed = embed)
