@@ -1,13 +1,13 @@
 [tool.poetry]
 name = "linerlybot-rewritten"
-version = "0.0.1"
+version = "0.0.2"
 description = "This is a new version of LinerlyBot which is made using Python instead of Node.JS."
 authors = ["Linerly"]
 
 [tool.poetry.dependencies]
 python = "^3.8"
 discord = "^1.0.1"
-replit = "^3.0.0"
+python-decouple = "^3.4"
 
 [tool.poetry.dev-dependencies]
 
