@@ -103,6 +103,7 @@ async def balance(ctx):
 
     embed = discord.Embed(title = "You currently have...", description = "<:gold:752147412445036645> " + gold_balance, color = 0x1e90ff)
     embed.set_author(name = "LinerlyBot", url = "https://linerly.github.io/linerlybot", icon_url = "https://linerly.github.io/assets/linerlybot/linerlybot.jpg")
+    embed.add_field(name = "", value = "(please be aware that new users that isn't in the database will result in an error!)")
     await ctx.send(embed = embed)
 
 @client.command(help = "Get some gold by working!")
@@ -110,8 +111,9 @@ async def work(ctx):
     job = "(insert job here)"
     gold = random.randint(0, 150)
 
-    embed = discord.Embed(title = "Working", description = ctx.author.mention +", you work as a " + job + " and you got " + "<:gold:752147412445036645> " + str(gold) + " for working!")
-
+    embed = discord.Embed(title = "Working", description = ctx.author.mention +", you work as a " + job + " and you got " + "<:gold:752147412445036645> " + str(gold) + " for working!", color = 0x1e90ff)
+    embed.set_author(name = "LinerlyBot", url = "https://linerly.github.io/linerlybot", icon_url = "https://linerly.github.io/assets/linerlybot/linerlybot.jpg")
+    embed.add_field(name = "", value = "(please be aware that new users that isn't in the database will result in an error!)")
     add_gold_balance(ctx.author, get_gold_balance(ctx.author) + gold)
 
     await ctx.send(embed = embed)
