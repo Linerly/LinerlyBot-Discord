@@ -1,2 +1,4 @@
 .env
 bank.json
+poetry.lock
+pyproject.toml
