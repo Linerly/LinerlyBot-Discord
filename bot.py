@@ -218,7 +218,7 @@ async def _info(ctx):
     embed.add_field(name = "Operating System", value = ":penguin: running on " + str(distro.name(pretty = True)))
     await ctx.send(embed = embed)
 
-@slash.slash(help = "A test command to check if the bot works, nothing else.")
+@client.command(help = "A test command to check if the bot works, nothing else.")
 async def _test(ctx):
     await ctx.send("test")
 
