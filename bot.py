@@ -1,6 +1,7 @@
 print("Preparing the bot...")
 import discord
 import os
+import distro
 import time
 import json
 import random
@@ -121,21 +122,22 @@ async def work(ctx):
 
 @client.command(help = "Shows some info about the bot.")
 async def info(ctx):
-    uptime_calc = int(round(time.time() - start_time))
-
-    sec = timedelta(seconds = uptime_calc)
-    uptime = str(sec)
+    current_time = time.time()
+    difference = int(round(current_time - start_time))
+    text = str(timedelta(seconds = difference))
   
     ping = str(round(client.latency * 1000))
 
     embed = discord.Embed(title = "Bot Info", color = 0x1e90ff)
     embed.set_author(name = "LinerlyBot", url = "https://linerly.github.io/linerlybot", icon_url = "https://linerly.github.io/assets/linerlybot/linerlybot.jpg")
 
-    embed.add_field(name = "Bot Uptime", value = ":green_circle: " + uptime)
+    embed.add_field(name = "Bot Uptime", value = ":green_circle: " + text)
 
     embed.add_field(name = "Servers", value = ":desktop: in " + str(len(client.guilds)) + " servers")
 
     embed.add_field(name = "Latency", value = ":globe_with_meridians: " + ping + " ms")
+
+    embed.add_field(name = "Operating System", value = ":penguin: running on " + distro.linux_distribution())
     await ctx.send(embed = embed)
 
 client.run(config('TOKEN'))
