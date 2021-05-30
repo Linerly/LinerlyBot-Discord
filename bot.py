@@ -137,7 +137,7 @@ async def info(ctx):
 
     embed.add_field(name = "Latency", value = ":globe_with_meridians: " + ping + " ms")
 
-    embed.add_field(name = "Operating System", value = ":penguin: running on " + str(distro.linux_distribution()))
+    embed.add_field(name = "Operating System", value = ":penguin: running on " + str(distro.name(pretty = True)))
     await ctx.send(embed = embed)
 
 client.run(config('TOKEN'))
