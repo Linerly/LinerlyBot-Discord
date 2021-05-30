@@ -14,8 +14,6 @@ from discord_slash import SlashCommand
 
 from discord.ext import commands
 
-guild_ids = [809722018953166858]
-
 client = commands.Bot(command_prefix = "l!", help_command = None)
 slash = SlashCommand(client, sync_commands = True)
 
