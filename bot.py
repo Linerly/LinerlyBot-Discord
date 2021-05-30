@@ -10,10 +10,14 @@ from datetime import datetime, timedelta
 
 from decouple import config
 
+from discord_slash import SlashCommand
+
 from discord.ext import commands
 
-client = discord.Client()
+guild_ids = [809722018953166858]
+
 client = commands.Bot(command_prefix = "l!", help_command = None)
+slash = SlashCommand(client, sync_commands = True)
 
 client.remove_command('help')
 
@@ -51,7 +55,7 @@ async def help(ctx, args = None):
 async def about(ctx):
     embed = discord.Embed(color = 0x1e90ff)
     embed.set_author(name = "LinerlyBot", url = "https://linerly.github.io/linerlybot", icon_url = "https://linerly.github.io/assets/linerlybot/linerlybot.jpg")
-    embed.add_field(name = "A new version of LinerlyBot which uses Discord.py instead of Discord.js.", value = "Previous LinerlyBot commands will be added back in the rewritten version! \n \n [Website](https://linerly.github.io/linerlybot) \n [Add LinerlyBot to your Discord Server](https://discord.com/oauth2/authorize?client_id=529566778293223434&scope=bot&permissions=18432) \n [Source Code](https://github.com/Linerly/linerlybot-rewritten)")
+    embed.add_field(name = "A new version of LinerlyBot which uses Discord.py instead of Discord.js.", value = "Previous LinerlyBot commands will be added back in the rewritten version! \n \n [Website](https://linerly.github.io/linerlybot) \n [Add LinerlyBot to your Discord Server](https://discord.com/oauth2/authorize?client_id=529566778293223434&permissions=2147485696&scope=bot+applications.commands) \n [Source Code](https://github.com/Linerly/linerlybot-rewritten)")
     await ctx.send(embed = embed)
 
 
@@ -139,5 +143,9 @@ async def info(ctx):
 
     embed.add_field(name = "Operating System", value = ":penguin: running on " + str(distro.name(pretty = True)))
     await ctx.send(embed = embed)
+
+@slash.slash(name = "test", description = "A test command to check if slash commands works, nothing else.", guild_ids = guild_ids)
+async def _test(ctx):
+    await ctx.send("test")
 
 client.run(config('TOKEN'))
