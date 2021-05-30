@@ -219,7 +219,7 @@ async def _info(ctx):
     await ctx.send(embed = embed)
 
 @client.command(help = "A test command to check if the bot works, nothing else.")
-async def _test(ctx):
+async def test(ctx):
     await ctx.send("test")
 
 @slash.slash(name = "test", description = "A test command to check if slash commands works, nothing else.")
