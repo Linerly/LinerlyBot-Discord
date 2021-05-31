@@ -5,6 +5,9 @@ import distro
 import time
 import json
 import random
+import pyjokes
+
+from quoters import Quote
 
 from datetime import datetime, timedelta
 
@@ -217,6 +220,22 @@ async def _info(ctx):
 
     embed.add_field(name = "Operating System", value = ":penguin: running on " + str(distro.name(pretty = True)))
     await ctx.send(embed = embed)
+
+@client.command(help = "Tells you random jokes.")
+async def joke(ctx):
+    await ctx.send(pyjokes.get_joke())
+
+@slash.slash(name = "joke", description = "Tells you random jokes.")
+async def _joke(ctx):
+    await ctx.send(pyjokes.get_joke())
+
+@client.command(help = "Tells you random quotes.")
+async def quote(ctx):
+    await ctx.send(Quote.print())
+
+@slash.slash(name = "quote", description = "Tells you random quotes.")
+async def _quote(ctx):
+    await ctx.send(Quote.print())
 
 @client.command(help = "A test command to check if the bot works, nothing else.")
 async def test(ctx):
