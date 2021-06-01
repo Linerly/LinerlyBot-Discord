@@ -28,7 +28,7 @@ async def on_ready():
     global start_time
     start_time = time.time()
 
-    activity = discord.Activity(name = "requests and responding to them", type = discord.ActivityType.listening)
+    activity = discord.Activity(name = "l!help - linerly.github.io/linerlybot", type = discord.ActivityType.playing)
     await client.change_presence(status = discord.Status.online, activity = activity)
     print("I should be ready now!")
 
@@ -231,7 +231,8 @@ async def _joke(ctx):
 
 @client.command(help = "Tells you random quotes.")
 async def quote(ctx):
-    await ctx.send(Quote.print())
+    async with ctx.typing(): 
+        await ctx.send(Quote.print())
 
 @slash.slash(name = "quote", description = "Tells you random quotes.")
 async def _quote(ctx):
