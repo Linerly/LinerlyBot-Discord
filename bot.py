@@ -242,11 +242,11 @@ async def _quote(ctx):
 @client.command(help = "Tells you random fortunes.")
 async def fortune(ctx):
     async with ctx.typing(): 
-        await ctx.send(fortune)
+        await ctx.send(fortune())
 
 @slash.slash(name = "fortune", description = "Tells you random fortunes.")
 async def _fortune(ctx):
-    await ctx.send(fortune)
+    await ctx.send(fortune())
 
 @client.command(help = "A test command to check if the bot works, nothing else.")
 async def test(ctx):
