@@ -1,4 +1,10 @@
 # linerlybot-rewritten
+![discord-server](https://img.shields.io/discord/551683447026876418?logoColor=1e90ff&style=plastic)
+
+![license](https://img.shields.io/github/license/Linerly/linerlybot-rewritten?style=plastic)
+
+![maintained?](https://img.shields.io/maintenance/yes/2021?style=plastic)
+
 The new version of LinerlyBot with discord.py.
 
 [Add LinerlyBot to your Discord server!](https://discord.com/oauth2/authorize?client_id=529566778293223434&permissions=2147485696&scope=bot+applications.commands)
