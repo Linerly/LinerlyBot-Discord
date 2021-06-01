@@ -242,7 +242,7 @@ async def _quote(ctx):
 @client.command(help = "Tells you random fortunes.")
 async def fortune(ctx):
     async with ctx.typing(): 
-        await ctx.send(fortune(config.FORTUNE_FILE))
+        await ctx.send(fortune(config(FORTUNE_FILE)))
 
 @slash.slash(name = "fortune", description = "Tells you random fortunes.")
 async def _fortune(ctx):
