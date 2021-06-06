@@ -14,7 +14,6 @@ The new version of LinerlyBot with discord.py.
 # Some issues when using LinerlyBot
 - When using slash commands, it may fail the first time using it, however it will work when you try again.
 - The `quote` command will fail when using it as a slash command, it has to get the quotes somewhere on the internet, and then sending it back to you which causes delay.
-- Since LinerlyBot is hosted on my own server and it is really far from Discord's server, it occasionally causes a huge delay when using LinerlyBot. (I may able to fix the delay by hosting it somewhere else, like replit or Heroku for free, but hosting it on my own pretty much works for me)
 
 ---
 
