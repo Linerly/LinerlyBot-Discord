@@ -3,25 +3,19 @@ import discord
 import os
 import distro
 import time
-import json
 import random
 import pyjokes
-
+from webserver import keep_alive
 from quoters import Quote
-
-from datetime import datetime, timedelta
-
-from decouple import config
-
+from datetime import timedelta
+from replit import db
 from discord_slash import SlashCommand
-
 from discord.ext import commands
 
 client = commands.Bot(command_prefix = "l!", help_command = None)
 slash = SlashCommand(client, sync_commands = True)
 
 client.remove_command('help')
-
 
 @client.event
 async def on_ready():
@@ -31,7 +25,6 @@ async def on_ready():
     activity = discord.Activity(name = "l!help - linerly.github.io/linerlybot", type = discord.ActivityType.playing)
     await client.change_presence(status = discord.Status.online, activity = activity)
     print("I should be ready now!")
-
 
 @client.command(help = "Shows a list of the bot's commands.")
 async def help(ctx, args = None):
@@ -108,34 +101,11 @@ async def _feeling(ctx):
     await ctx.send(random.choice(feelings))
 
 def get_gold_balance(member: discord.Member):
-    with open("bank.json", "r") as fp:
-        print("Accessing JSON database...")
-        data = json.load(fp)
-  
-    try:
-        return data[f"{member.id}"]["gold"]
-  
-    except KeyError:
-        data[f"{member.id}"] = {"gold": 0}
+    db[f"{member.id}"]
+
   
 def add_gold_balance(member: discord.Member, amount):
-    if os.path.isfile("bank.json"):
-        with open("bank.json", "r") as fp:
-            print("Loading JSON database...")
-            data = json.load(fp)
-
-    try:
-        data[f"{member.id}"]["gold"] += amount
-
-    except KeyError:
-        data[f"{member.id}"] = {"gold": amount}
-
-    else:
-        data = {f"{member.id}": {"gold": amount}}
-
-        with open("bank.json", "w+") as fp:
-            print("Writing to JSON database...")
-            json.dump(data, fp)
+    db[member.id] = amount
 
 @client.command(help = "Check your balance by using the command.")
 async def balance(ctx):
@@ -238,12 +208,5 @@ async def quote(ctx):
 async def _quote(ctx):
     await ctx.send(Quote.print())
 
-@client.command(help = "A test command to check if the bot works, nothing else.")
-async def test(ctx):
-    await ctx.send("test")
-
-@slash.slash(name = "test", description = "A test command to check if slash commands works, nothing else.")
-async def _test(ctx):
-    await ctx.send("test")
-
-client.run(config('TOKEN'))
+keep_alive()
+client.run(os.environ['TOKEN'])

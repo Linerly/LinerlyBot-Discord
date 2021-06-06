@@ -16,6 +16,11 @@ The new version of LinerlyBot with discord.py.
 - The `quote` command will fail when using it as a slash command, it has to get the quotes somewhere on the internet, and then sending it back to you which causes delay.
 
 ---
+# Extra notes
+- Now LinerlyBot is hosted on Replit.
+- LinerlyBot now uses the Replit Database as well.
+
+---
 
 # Additional Python libraries used for LinerlyBot
 
@@ -23,7 +28,6 @@ Here is a list of the additional Python libraries used for LinerlyBot.
 
 - [discord.py](https://pypi.org/project/discord.py/) - duh, you need it
 - [discord-py-slash-command](https://pypi.org/project/discord-py-slash-command/) - for handling slash commands
-- [python-decouple](https://pypi.org/project/python-decouple/) - for reading parameters in an .env file, just for the bot's token
 - [distro](https://pypi.org/project/distro/) - for detecting what OS the bot is running on
 - [pyjokes](https://pypi.org/project/pyjokes/) - for providing the jokes for the `joke` command
 - [quoters](https://pypi.org/project/quoters/) - for providing random quotes for the `quote` command
