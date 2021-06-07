@@ -298,6 +298,21 @@ version = "0.5.1"
 
 [[package]]
 category = "main"
+description = "Simple to use CLI for setting up nginx webserver in Docker Swarm and adding websites' configs, proxies and static files"
+name = "webserver"
+optional = false
+python-versions = ">=3.7"
+version = "0.10.3"
+
+[package.dependencies]
+click = "*"
+
+[package.extras]
+lint = ["mypy", "autoflake", "black", "isort"]
+test = ["asynctest"]
+
+[[package]]
+category = "main"
 description = "The comprehensive WSGI web application library."
 name = "werkzeug"
 optional = false
@@ -320,7 +335,7 @@ idna = ">=2.0"
 multidict = ">=4.0"
 
 [metadata]
-content-hash = "ff1a4e81d281f96050664bbde9f2af6642bc49e317499c0250017f23e1ad4d57"
+content-hash = "3f74962a5229c4564e49a18b8a094f1f4acad0880bd2baea94981b5c692d2cab"
 python-versions = "^3.8"
 
 [metadata.files]
@@ -574,6 +589,10 @@ typing-extensions = [
 webencodings = [
     {file = "webencodings-0.5.1-py2.py3-none-any.whl", hash = "sha256:a0af1213f3c2226497a97e2b3aa01a7e4bee4f403f95be16fc9acd2947514a78"},
     {file = "webencodings-0.5.1.tar.gz", hash = "sha256:b36a1c245f2d304965eb4e0a82848379241dc04b865afcc4aab16748587e1923"},
+]
+webserver = [
+    {file = "webserver-0.10.3-py3-none-any.whl", hash = "sha256:3d3a27ffeecaa5abb4b5b328496dbe7efb9997110e9b89d69a034846448cb0a3"},
+    {file = "webserver-0.10.3.tar.gz", hash = "sha256:3c0d1c0b0b12dafe6595dffd16b92d9166f592325a4f24dda74e51ca0580e1a7"},
 ]
 werkzeug = [
     {file = "Werkzeug-2.0.1-py3-none-any.whl", hash = "sha256:6c1ec500dcdba0baa27600f6a22f6333d8b662d22027ff9f6202e3367413caa8"},

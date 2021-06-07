@@ -11,14 +11,9 @@ The new version of LinerlyBot with discord.py.
 
 ---
 
-# Some issues when using LinerlyBot
-- When using slash commands, it may fail the first time using it, however it will work when you try again.
-- The `quote` command will fail when using it as a slash command, it has to get the quotes somewhere on the internet, and then sending it back to you which causes delay.
-
----
 # Extra notes
 - Now LinerlyBot is hosted on Replit.
-- LinerlyBot now uses the Replit Database as well.
+- LinerlyBot also uses the Replit Database as well.
 
 ---
 
@@ -31,3 +26,4 @@ Here is a list of the additional Python libraries used for LinerlyBot.
 - [distro](https://pypi.org/project/distro/) - for detecting what OS the bot is running on
 - [pyjokes](https://pypi.org/project/pyjokes/) - for providing the jokes for the `joke` command
 - [quoters](https://pypi.org/project/quoters/) - for providing random quotes for the `quote` command
+- [webserver](https://pypi.org/project/webserver/) - for keeping the bot online (`keep_alive()`)

@@ -13,6 +13,7 @@ pyjokes = "^0.6.0"
 replit = "^3.1.0"
 quoters = "^0.28"
 discord-py-slash-command = "^1.2.2"
+webserver = "^0.10.3"
 
 [tool.poetry.dev-dependencies]
 
