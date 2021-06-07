@@ -27,3 +27,6 @@ Here is a list of the additional Python libraries used for LinerlyBot.
 - [pyjokes](https://pypi.org/project/pyjokes/) - for providing the jokes for the `joke` command
 - [quoters](https://pypi.org/project/quoters/) - for providing random quotes for the `quote` command
 - [webserver](https://pypi.org/project/webserver/) - for keeping the bot online (`keep_alive()`)
+- [replit](https://pypi.org/project/replit/) -  just for providing the Replit Database client
+
+(just look at the poetry.lock file, whatever)
