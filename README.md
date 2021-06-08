@@ -1,13 +1,16 @@
 # linerlybot-rewritten
 ![discord-server](https://img.shields.io/discord/551683447026876418?logoColor=1e90ff&style=plastic)
-
 ![license](https://img.shields.io/github/license/Linerly/linerlybot-rewritten?style=plastic)
-
 ![maintained?](https://img.shields.io/maintenance/yes/2021?style=plastic)
 
 The new version of LinerlyBot with discord.py.
 
 [Add LinerlyBot to your Discord server!](https://discord.com/oauth2/authorize?client_id=529566778293223434&permissions=2147485696&scope=bot+applications.commands)
+
+---
+
+# Some issue(s) when using LinerlyBot
+- Occasionally, you might get the "Invalid interaction application command" error when using some slash commands. If you try again, it will mostly work again like normal.
 
 ---
 
@@ -29,4 +32,4 @@ Here is a list of the additional Python libraries used for LinerlyBot.
 - [webserver](https://pypi.org/project/webserver/) - for keeping the bot online (`keep_alive()`)
 - [replit](https://pypi.org/project/replit/) -  just for providing the Replit Database client
 
-(just look at the poetry.lock file, whatever)
+(just look at the poetry.lock file, if you want)
