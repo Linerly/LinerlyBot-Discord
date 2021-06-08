@@ -9,8 +9,22 @@ The new version of LinerlyBot with discord.py.
 
 ---
 
+# Features
+- Informational commands such as the `help`, `info`, `ping`, and the `about` command.
+- Fun commands such as the `joke` and the `feeling` command.
+- Other miscellaneous such as the `quote` command.
+- Gold as the currency for LinerlyBot.
+
+---
+
+# To-do
+- Adding moderation commands, plus some other miscellaneous commands as well.
+
+---
+
 # Some issue(s) when using LinerlyBot
-- Occasionally, you might get the "Invalid interaction application command" error when using some slash commands. If you try again, it will mostly work again like normal.
+- Occasionally, you might get the "Invalid interaction application command" error when using some slash commands, if you try again, it will work again like normal.
+- Currency commands don't really work just yet, I haven't figure out how to handle the `KeyError` error.
 
 ---
 
