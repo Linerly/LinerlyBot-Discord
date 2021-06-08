@@ -29,7 +29,7 @@ async def on_ready():
 @client.command(help = "Shows a list of the bot's commands.")
 async def help(ctx, args = None):
     help_embed = discord.Embed(title = "Let me help you!", color = 0x1e90ff)
-    help_embed.set_author(name = "LinerlyBot", url = "https://linerly.github.io/linerlybot", icon_url = "https://linerly.github.io/assets/linerlybot/linerlybot.jpg")
+    help_embed.set_author(name = "LinerlyBot", url = "https://linerly.github.io/linerlybot", icon_url = "https://linerly.github.io/assets/linerlybot/linerlybot.png")
     command_names_list = [x.name for x in client.commands]
 
     if not args:
@@ -47,7 +47,7 @@ async def help(ctx, args = None):
 @slash.slash(name = "help", description = "Shows a list of the bot's commands.")
 async def _help(ctx, args = None):
     help_embed = discord.Embed(title = "Let me help you!", color = 0x1e90ff)
-    help_embed.set_author(name = "LinerlyBot", url = "https://linerly.github.io/linerlybot", icon_url = "https://linerly.github.io/assets/linerlybot/linerlybot.jpg")
+    help_embed.set_author(name = "LinerlyBot", url = "https://linerly.github.io/linerlybot", icon_url = "https://linerly.github.io/assets/linerlybot/linerlybot.png")
     command_names_list = [x.name for x in client.commands]
 
     if not args:
@@ -65,14 +65,14 @@ async def _help(ctx, args = None):
 @client.command(help = "Tells you about the bot.")
 async def about(ctx):
     embed = discord.Embed(color = 0x1e90ff)
-    embed.set_author(name = "LinerlyBot", url = "https://linerly.github.io/linerlybot", icon_url = "https://linerly.github.io/assets/linerlybot/linerlybot.jpg")
+    embed.set_author(name = "LinerlyBot", url = "https://linerly.github.io/linerlybot", icon_url = "https://linerly.github.io/assets/linerlybot/linerlybot.png")
     embed.add_field(name = "A new version of LinerlyBot which uses Discord.py instead of Discord.js.", value = "Previous LinerlyBot commands will be added back in the rewritten version! \n \n [Website](https://linerly.github.io/linerlybot) \n [Add LinerlyBot to your Discord Server](https://discord.com/oauth2/authorize?client_id=529566778293223434&permissions=2147485696&scope=bot+applications.commands) \n [Source Code](https://github.com/Linerly/linerlybot-rewritten)")
     await ctx.send(embed = embed)
 
 @slash.slash(name = "about", description = "Tells you about the bot.")
 async def _about(ctx):
     embed = discord.Embed(color = 0x1e90ff)
-    embed.set_author(name = "LinerlyBot", url = "https://linerly.github.io/linerlybot", icon_url = "https://linerly.github.io/assets/linerlybot/linerlybot.jpg")
+    embed.set_author(name = "LinerlyBot", url = "https://linerly.github.io/linerlybot", icon_url = "https://linerly.github.io/assets/linerlybot/linerlybot.png")
     embed.add_field(name = "A new version of LinerlyBot which uses Discord.py instead of Discord.js.", value = "Previous LinerlyBot commands will be added back in the rewritten version! \n \n [Website](https://linerly.github.io/linerlybot) \n [Add LinerlyBot to your Discord Server](https://discord.com/oauth2/authorize?client_id=529566778293223434&permissions=2147485696&scope=bot+applications.commands) \n [Source Code](https://github.com/Linerly/linerlybot-rewritten)")
     await ctx.send(embed = embed)
 
@@ -80,14 +80,14 @@ async def _about(ctx):
 async def ping(ctx):
     ping = str(round(client.latency * 1000))
     embed = discord.Embed(title = "Pong!", description = ping + " ms.", color = 0x1e90ff)
-    embed.set_author(name = "LinerlyBot", url = "https://linerly.github.io/linerlybot", icon_url = "https://linerly.github.io/assets/linerlybot/linerlybot.jpg")
+    embed.set_author(name = "LinerlyBot", url = "https://linerly.github.io/linerlybot", icon_url = "https://linerly.github.io/assets/linerlybot/linerlybot.png")
     await ctx.send(embed = embed)
 
 @slash.slash(name = "ping", description = "Checks the bot's current latency.")
 async def _ping(ctx):
     ping = str(round(client.latency * 1000))
     embed = discord.Embed(title = "Pong!", description = ping + " ms.", color = 0x1e90ff)
-    embed.set_author(name = "LinerlyBot", url = "https://linerly.github.io/linerlybot", icon_url = "https://linerly.github.io/assets/linerlybot/linerlybot.jpg")
+    embed.set_author(name = "LinerlyBot", url = "https://linerly.github.io/linerlybot", icon_url = "https://linerly.github.io/assets/linerlybot/linerlybot.png")
     await ctx.send(embed = embed)
 
 @client.command(help = "I can show you what I'm feeling now.")
@@ -112,7 +112,7 @@ async def balance(ctx):
     gold_balance = str(get_gold_balance(ctx.author))
 
     embed = discord.Embed(title = "You currently have...", description = "<:gold:752147412445036645> " + gold_balance, color = 0x1e90ff)
-    embed.set_author(name = "LinerlyBot", url = "https://linerly.github.io/linerlybot", icon_url = "https://linerly.github.io/assets/linerlybot/linerlybot.jpg")
+    embed.set_author(name = "LinerlyBot", url = "https://linerly.github.io/linerlybot", icon_url = "https://linerly.github.io/assets/linerlybot/linerlybot.png")
     embed.add_field(name = "_ _", value = "Please be aware that new users that isn't in the database will result in an internal error!")
     await ctx.send(embed = embed)
 
@@ -121,7 +121,7 @@ async def _balance(ctx):
     gold_balance = str(get_gold_balance(ctx.author))
 
     embed = discord.Embed(title = "You currently have...", description = "<:gold:752147412445036645> " + gold_balance, color = 0x1e90ff)
-    embed.set_author(name = "LinerlyBot", url = "https://linerly.github.io/linerlybot", icon_url = "https://linerly.github.io/assets/linerlybot/linerlybot.jpg")
+    embed.set_author(name = "LinerlyBot", url = "https://linerly.github.io/linerlybot", icon_url = "https://linerly.github.io/assets/linerlybot/linerlybot.png")
     embed.add_field(name = "_ _", value = "Please be aware that new users that isn't in the database will result in an internal error!")
     await ctx.send(embed = embed)
 
@@ -131,7 +131,7 @@ async def work(ctx):
     gold = random.randint(0, 150)
 
     embed = discord.Embed(title = "Working", description = ctx.author.mention +", you work as a " + job + " and you got " + "<:gold:752147412445036645> " + str(gold) + " for working!", color = 0x1e90ff)
-    embed.set_author(name = "LinerlyBot", url = "https://linerly.github.io/linerlybot", icon_url = "https://linerly.github.io/assets/linerlybot/linerlybot.jpg")
+    embed.set_author(name = "LinerlyBot", url = "https://linerly.github.io/linerlybot", icon_url = "https://linerly.github.io/assets/linerlybot/linerlybot.png")
     embed.add_field(name = "_ _", value = "Please be aware that new users that isn't in the database will result in an internal error!")
 
     add_gold_balance(ctx.author, get_gold_balance(ctx.author) + gold)
@@ -144,7 +144,7 @@ async def _work(ctx):
     gold = random.randint(0, 150)
 
     embed = discord.Embed(title = "Working", description = ctx.author.mention +", you work as a " + job + " and you got " + "<:gold:752147412445036645> " + str(gold) + " for working!", color = 0x1e90ff)
-    embed.set_author(name = "LinerlyBot", url = "https://linerly.github.io/linerlybot", icon_url = "https://linerly.github.io/assets/linerlybot/linerlybot.jpg")
+    embed.set_author(name = "LinerlyBot", url = "https://linerly.github.io/linerlybot", icon_url = "https://linerly.github.io/assets/linerlybot/linerlybot.png")
     embed.add_field(name = "_ _", value = "Please be aware that new users that isn't in the database will result in an internal error!")
 
     add_gold_balance(ctx.author, get_gold_balance(ctx.author) + gold)
@@ -160,7 +160,7 @@ async def info(ctx):
     ping = str(round(client.latency * 1000))
 
     embed = discord.Embed(title = "Bot Info", color = 0x1e90ff)
-    embed.set_author(name = "LinerlyBot", url = "https://linerly.github.io/linerlybot", icon_url = "https://linerly.github.io/assets/linerlybot/linerlybot.jpg")
+    embed.set_author(name = "LinerlyBot", url = "https://linerly.github.io/linerlybot", icon_url = "https://linerly.github.io/assets/linerlybot/linerlybot.png")
 
     embed.add_field(name = "Bot Uptime", value = ":green_circle: " + text)
 
@@ -180,7 +180,7 @@ async def _info(ctx):
     ping = str(round(client.latency * 1000))
 
     embed = discord.Embed(title = "Bot Info", color = 0x1e90ff)
-    embed.set_author(name = "LinerlyBot", url = "https://linerly.github.io/linerlybot", icon_url = "https://linerly.github.io/assets/linerlybot/linerlybot.jpg")
+    embed.set_author(name = "LinerlyBot", url = "https://linerly.github.io/linerlybot", icon_url = "https://linerly.github.io/assets/linerlybot/linerlybot.png")
 
     embed.add_field(name = "Bot Uptime", value = ":green_circle: " + text)
 
