@@ -8,7 +8,6 @@ import pyjokes
 from webserver import keep_alive
 from quoters import Quote
 from datetime import timedelta
-from replit import db
 from discord_slash import SlashCommand
 from discord.ext import commands
 
@@ -66,7 +65,7 @@ async def _help(ctx, args = None):
 async def about(ctx):
     embed = discord.Embed(color = 0x1e90ff)
     embed.set_author(name = "LinerlyBot", url = "https://linerly.github.io/linerlybot", icon_url = "https://linerly.github.io/assets/linerlybot/linerlybot.png")
-    embed.add_field(name = "A new version of LinerlyBot which uses Discord.py instead of Discord.js.", value = "Previous LinerlyBot commands will be added back in the rewritten version! \n \n [Website](https://linerly.github.io/linerlybot) \n [Add LinerlyBot to your Discord Server](https://discord.com/oauth2/authorize?client_id=529566778293223434&permissions=2147485696&scope=bot+applications.commands) \n [Source Code](https://github.com/Linerly/linerlybot-rewritten)")
+    embed.add_field(name = "A new version of LinerlyBot which uses Discord.py instead of Discord.js.", value = "Previous LinerlyBot commands will be added back in the rewritten version! \n \n [Website](https://linerly.github.io/linerlybot) \n [Add LinerlyBot to your Discord Server](https://discord.com/api/oauth2/authorize?client_id=529566778293223434&permissions=1576266871&scope=applications.commands%20bot) \n [Source Code](https://github.com/Linerly/linerlybot-rewritten)")
     await ctx.send(embed = embed)
 
 @slash.slash(name = "about", description = "Tells you about the bot.")
@@ -99,57 +98,6 @@ async def feeling(ctx):
 async def _feeling(ctx):
     feelings = [':slight_smile:', ':upside_down:', ':woozy_face:', ':confused:', ':sleeping:', ':rolling_eyes:', ':smiling_face_with_tear:', ':no_mouth:']
     await ctx.send(random.choice(feelings))
-
-def get_gold_balance(member: discord.Member):
-    db[f"{member.id}"]
-
-  
-def add_gold_balance(member: discord.Member, amount):
-    db[member.id] = amount
-
-@client.command(help = "Check your balance by using the command.")
-async def balance(ctx):
-    gold_balance = str(get_gold_balance(ctx.author))
-
-    embed = discord.Embed(title = "You currently have...", description = "<:gold:752147412445036645> " + gold_balance, color = 0x1e90ff)
-    embed.set_author(name = "LinerlyBot", url = "https://linerly.github.io/linerlybot", icon_url = "https://linerly.github.io/assets/linerlybot/linerlybot.png")
-    embed.add_field(name = "_ _", value = "Please be aware that new users that isn't in the database will result in an internal error!")
-    await ctx.send(embed = embed)
-
-@slash.slash(name = "balance", description = "Check your balance by using the command.")
-async def _balance(ctx):
-    gold_balance = str(get_gold_balance(ctx.author))
-
-    embed = discord.Embed(title = "You currently have...", description = "<:gold:752147412445036645> " + gold_balance, color = 0x1e90ff)
-    embed.set_author(name = "LinerlyBot", url = "https://linerly.github.io/linerlybot", icon_url = "https://linerly.github.io/assets/linerlybot/linerlybot.png")
-    embed.add_field(name = "_ _", value = "Please be aware that new users that isn't in the database will result in an internal error!")
-    await ctx.send(embed = embed)
-
-@client.command(help = "Get some gold by working!")
-async def work(ctx):
-    job = "(insert job here)"
-    gold = random.randint(0, 150)
-
-    embed = discord.Embed(title = "Working", description = ctx.author.mention +", you work as a " + job + " and you got " + "<:gold:752147412445036645> " + str(gold) + " for working!", color = 0x1e90ff)
-    embed.set_author(name = "LinerlyBot", url = "https://linerly.github.io/linerlybot", icon_url = "https://linerly.github.io/assets/linerlybot/linerlybot.png")
-    embed.add_field(name = "_ _", value = "Please be aware that new users that isn't in the database will result in an internal error!")
-
-    add_gold_balance(ctx.author, get_gold_balance(ctx.author) + gold)
-
-    await ctx.send(embed = embed)
-
-@slash.slash(name = "work", description = "Get some gold by working!")
-async def _work(ctx):
-    job = "(insert job here)"
-    gold = random.randint(0, 150)
-
-    embed = discord.Embed(title = "Working", description = ctx.author.mention +", you work as a " + job + " and you got " + "<:gold:752147412445036645> " + str(gold) + " for working!", color = 0x1e90ff)
-    embed.set_author(name = "LinerlyBot", url = "https://linerly.github.io/linerlybot", icon_url = "https://linerly.github.io/assets/linerlybot/linerlybot.png")
-    embed.add_field(name = "_ _", value = "Please be aware that new users that isn't in the database will result in an internal error!")
-
-    add_gold_balance(ctx.author, get_gold_balance(ctx.author) + gold)
-
-    await ctx.send(embed = embed)
 
 @client.command(help = "Shows some info about the bot.")
 async def info(ctx):
