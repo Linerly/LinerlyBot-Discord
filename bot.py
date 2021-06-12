@@ -28,17 +28,17 @@ async def on_ready():
     print("I should be ready now!")
 
 @client.command(help = "Shows a list of the bot's commands.")
-async def help(ctx, args = None):
+async def help(ctx, command = None):
     help_embed = discord.Embed(title = "Let me help you!", color = 0x1e90ff)
     help_embed.set_author(name = "LinerlyBot", url = "https://linerly.github.io/linerlybot", icon_url = "https://linerly.github.io/assets/linerlybot/linerlybot.png")
     command_names_list = [x.name for x in client.commands]
 
-    if not args:
+    if not command:
       help_embed.add_field(name = "Bot Commands", value = "\n".join([x.name for i, x in enumerate(client.commands)]), inline = False)
       help_embed.add_field(name = "Details", value = "Type `l!help <command name>` for more details about each command. \n \n*This is a rewritten version of LinerlyBot using Discord.py.*", inline = False)
 
-    elif args in command_names_list:
-      help_embed.add_field(name = args, value = client.get_command(args).help)
+    elif command in command_names_list:
+      help_embed.add_field(name = command, value = client.get_command(command).help)
 
     else:
       help_embed.add_field(name = "Invalid command!", value = "That command isn't available.")
@@ -46,17 +46,17 @@ async def help(ctx, args = None):
     await ctx.send(embed = help_embed)
 
 @slash.slash(name = "help", description = "Shows a list of the bot's commands.")
-async def _help(ctx, args = None):
+async def _help(ctx, command = None):
     help_embed = discord.Embed(title = "Let me help you!", color = 0x1e90ff)
     help_embed.set_author(name = "LinerlyBot", url = "https://linerly.github.io/linerlybot", icon_url = "https://linerly.github.io/assets/linerlybot/linerlybot.png")
     command_names_list = [x.name for x in client.commands]
 
-    if not args:
+    if not command:
       help_embed.add_field(name = "Bot Commands", value = "\n".join([x.name for i, x in enumerate(client.commands)]), inline = False)
-      help_embed.add_field(name = "Details", value = "Type `l!help <command name>` for more details about each command. \n \n*This is a rewritten version of LinerlyBot using Discord.py.*", inline = False)
+      help_embed.add_field(name = "Details", value = "Type `/help <command name>` for more details about each command. \n \n*This is a rewritten version of LinerlyBot using Discord.py.*", inline = False)
 
-    elif args in command_names_list:
-      help_embed.add_field(name = args, value = client.get_command(args).help)
+    elif command in command_names_list:
+      help_embed.add_field(name = command, value = client.get_command(command).help)
 
     else:
       help_embed.add_field(name = "Invalid command!", value = "That command isn't available.")
@@ -158,7 +158,7 @@ async def quote(ctx):
 async def _quote(ctx):
     await ctx.send(Quote.print())
 
-@client.command(help = "Generate text based on an input sentence, predict the next text from partial sentences, or just complete a paragraph of a text. Just to let you know, the generated text *may* contain profanity.")
+@client.command(help = "Generate text based on an input sentence, predict the next text from partial sentences, or just complete a paragraph of a text. The generated text *may* contain profanity.")
 async def text(ctx, text = None):
     r = requests.post(
     "https://api.deepai.org/api/text-generator",
@@ -168,7 +168,19 @@ async def text(ctx, text = None):
     headers={'api-key': os.environ['DEEPAI_API_KEY']}
 )
 
-    await ctx.send("Raw JSON output \n \n" + str(r.json()))
+    await ctx.send(f"Raw JSON output \n \n ```{str(r.json())}```")
+
+@slash.slash(name = "text", description = "Generate text based on an input sentence, predict the next text from partial sentences, or just complete a paragraph of a text. The generated text *may* contain profanity.")
+async def _text(ctx, text = None):
+    r = requests.post(
+    "https://api.deepai.org/api/text-generator",
+    data={
+        'text': text,
+    },
+    headers={'api-key': os.environ['DEEPAI_API_KEY']}
+)
+
+    await ctx.send(f"Raw JSON output \n \n ```{str(r.json())}```")
 
 keep_alive()
 client.run(os.environ['TOKEN'])
