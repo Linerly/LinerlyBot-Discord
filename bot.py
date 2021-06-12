@@ -5,6 +5,8 @@ import distro
 import time
 import random
 import pyjokes
+import requests
+import json
 from webserver import keep_alive
 from quoters import Quote
 from datetime import timedelta
@@ -155,6 +157,18 @@ async def quote(ctx):
 @slash.slash(name = "quote", description = "Tells you random quotes.")
 async def _quote(ctx):
     await ctx.send(Quote.print())
+
+@client.command(help = "Generate text based on an input sentence, predict the next text from partial sentences, or just complete a paragraph of a text. Just to let you know, the generated text *may* contain profanity.")
+async def text(ctx, text = None):
+    r = requests.post(
+    "https://api.deepai.org/api/text-generator",
+    data={
+        'text': text,
+    },
+    headers={'api-key': os.environ['DEEPAI_API_KEY']}
+)
+
+    await ctx.send("Raw JSON output \n \n" + str(r.json()))
 
 keep_alive()
 client.run(os.environ['TOKEN'])
