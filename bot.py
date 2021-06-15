@@ -1,5 +1,4 @@
 print("Preparing the bot...")
-import json
 import os
 import random
 import time
@@ -265,7 +264,7 @@ async def _quote(ctx):
 
 
 @client.command(
-    help="Generate text based on an input sentence, predict the next text from partial sentences, or just complete a paragraph of a text. The generated text *may* contain profanity."
+    help="Generate, predict, or just complete texts. The generated text may contain profanity."
 )
 async def text(ctx, text=None):
     r = requests.post(
@@ -281,7 +280,7 @@ async def text(ctx, text=None):
 
 @slash.slash(
     name="text",
-    description="Generate text based on an input sentence, predict the next text from partial sentences, or just complete a paragraph of a text. The generated text *may* contain profanity.",
+    description="Generate, predict, or just complete texts.",
 )
 async def _text(ctx, text=None):
     r = requests.post(
