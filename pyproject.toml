@@ -15,6 +15,8 @@ quoters = "^0.28"
 discord-py-slash-command = "^1.2.2"
 webserver = "^0.10.3"
 demjson = "^2.2.4"
+black = "^21.6b0"
+isort = "^5.8.0"
 
 [tool.poetry.dev-dependencies]
 

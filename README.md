@@ -1,4 +1,4 @@
-![linerlybot logo](https://raw.githubusercontent.com/Linerly/linerlybot-rewritten/profile-picture.png)
+![linerlybot logo](https://raw.githubusercontent.com/Linerly/linerlybot-rewritten/master/profile-picture.png)
 
 <h2 align="center">linerlybot-rewritten</h2>
 

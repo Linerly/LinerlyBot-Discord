@@ -10,6 +10,7 @@ import pyjokes
 import requests
 from discord.ext import commands
 from discord_slash import SlashCommand
+from discord_slash.utils.manage_commands import create_option
 from quoters import Quote
 
 from webserver import keep_alive
@@ -65,8 +66,19 @@ async def help(ctx, command=None):
     await ctx.send(embed=help_embed)
 
 
-@slash.slash(name="help", description="Shows a list of the bot's commands.")
-async def _help(ctx, command=None):
+@slash.slash(
+    name="help",
+    description="Shows a list of the bot's commands.",
+    options=[
+        create_option(
+            name="command",
+            description="Specify a command that you want to get more info about it.",
+            option_type=3,
+            required=False
+        )
+    ]
+)
+async def _help(ctx, command: str):
     help_embed = discord.Embed(title="Let me help you!", color=0x1E90FF)
     help_embed.set_author(
         name="LinerlyBot",
@@ -267,22 +279,31 @@ async def _quote(ctx):
     help="Generate, predict, or just complete texts. The generated text may contain profanity."
 )
 async def text(ctx, text=None):
-    r = requests.post(
-        "https://api.deepai.org/api/text-generator",
-        data={
-            "text": text,
-        },
-        headers={"api-key": os.environ["DEEPAI_API_KEY"]},
-    )
+    async with ctx.typing():
+        r = requests.post(
+            "https://api.deepai.org/api/text-generator",
+            data={
+                "text": text,
+            },
+            headers={"api-key": os.environ["DEEPAI_API_KEY"]},
+        )
 
-    await ctx.send(f"Raw JSON output \n \n ```{str(r.json())}```")
+        await ctx.send(f"Raw JSON output \n \n ```{str(r.json())}```")
 
 
 @slash.slash(
     name="text",
     description="Generate, predict, or just complete texts.",
+    options=[
+        create_option(
+            name="text",
+            description="Your text - anything!",
+            option_type=3,
+            required=True
+        )
+    ]
 )
-async def _text(ctx, text=None):
+async def _text(ctx, text: str):
     r = requests.post(
         "https://api.deepai.org/api/text-generator",
         data={
