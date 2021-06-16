@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "linerlybot-rewritten"
-version = "0.0.3"
+version = "0.0.4"
 description = "The new version of LinerlyBot."
 authors = ["Linerly"]
 

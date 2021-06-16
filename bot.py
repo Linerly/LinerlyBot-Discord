@@ -7,6 +7,7 @@ from datetime import timedelta
 import discord
 import distro
 import pyjokes
+import platform
 import requests
 from discord.ext import commands
 from discord_slash import SlashCommand
@@ -221,6 +222,12 @@ async def info(ctx):
         name="Operating System",
         value=":penguin: running on " + str(distro.name(pretty=True)),
     )
+
+    embed.add_field(
+        name="Python Version",
+        value=":snake: Python " + str(platform.python_version()),
+    )
+
     await ctx.send(embed=embed)
 
 
@@ -251,6 +258,12 @@ async def _info(ctx):
         name="Operating System",
         value=":penguin: running on " + str(distro.name(pretty=True)),
     )
+
+    embed.add_field(
+        name="Python Version",
+        value=":snake: Python " + str(platform.python_version()),
+    )
+
     await ctx.send(embed=embed)
 
 
@@ -288,14 +301,7 @@ async def text(ctx, text=None):
             headers={"api-key": os.environ["DEEPAI_API_KEY"]},
         )
 
-        embed = discord.Embed(title="Bot Info", color=0x1E90FF)
-        embed.set_author(
-            name="LinerlyBot",
-            url="https://linerly.github.io/linerlybot",
-            icon_url="https://linerly.github.io/assets/linerlybot/linerlybot.png",
-        )
-        embed.add_field(name="Raw JSON Output", value=f"```{str(r.json())}```")
-        await ctx.send(embed=embed)
+        await ctx.send(f"**Raw JSON Output** \n*provided by DeepAI* \n```{str(r.json())}```")
 
 
 @slash.slash(
@@ -319,14 +325,7 @@ async def _text(ctx, text: str):
         headers={"api-key": os.environ["DEEPAI_API_KEY"]},
     )
 
-    embed = discord.Embed(title="Bot Info", color=0x1E90FF)
-    embed.set_author(
-        name="LinerlyBot",
-        url="https://linerly.github.io/linerlybot",
-        icon_url="https://linerly.github.io/assets/linerlybot/linerlybot.png",
-    )
-    embed.add_field(name="Raw JSON Output", value=f"```{str(r.json())}```")
-    await ctx.send(embed=embed)
+    await ctx.send(f"**Raw JSON Output** \n*provided by DeepAI* \n```{str(r.json())}```")
 
 
 keep_alive()
