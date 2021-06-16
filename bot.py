@@ -74,9 +74,9 @@ async def help(ctx, command=None):
             name="command",
             description="Specify a command that you want to get more info about it.",
             option_type=3,
-            required=False
+            required=False,
         )
-    ]
+    ],
 )
 async def _help(ctx, command: str):
     help_embed = discord.Embed(title="Let me help you!", color=0x1E90FF)
@@ -288,7 +288,14 @@ async def text(ctx, text=None):
             headers={"api-key": os.environ["DEEPAI_API_KEY"]},
         )
 
-        await ctx.send(f"Raw JSON output \n \n ```{str(r.json())}```")
+        embed = discord.Embed(title="Bot Info", color=0x1E90FF)
+        embed.set_author(
+            name="LinerlyBot",
+            url="https://linerly.github.io/linerlybot",
+            icon_url="https://linerly.github.io/assets/linerlybot/linerlybot.png",
+        )
+        embed.add_field(name="Raw JSON Output", value=f"```{str(r.json())}```")
+        await ctx.send(embed=embed)
 
 
 @slash.slash(
@@ -299,9 +306,9 @@ async def text(ctx, text=None):
             name="text",
             description="Your text - anything!",
             option_type=3,
-            required=True
+            required=True,
         )
-    ]
+    ],
 )
 async def _text(ctx, text: str):
     r = requests.post(
@@ -312,7 +319,14 @@ async def _text(ctx, text: str):
         headers={"api-key": os.environ["DEEPAI_API_KEY"]},
     )
 
-    await ctx.send(f"Raw JSON output \n \n ```{str(r.json())}```")
+    embed = discord.Embed(title="Bot Info", color=0x1E90FF)
+    embed.set_author(
+        name="LinerlyBot",
+        url="https://linerly.github.io/linerlybot",
+        icon_url="https://linerly.github.io/assets/linerlybot/linerlybot.png",
+    )
+    embed.add_field(name="Raw JSON Output", value=f"```{str(r.json())}```")
+    await ctx.send(embed=embed)
 
 
 keep_alive()

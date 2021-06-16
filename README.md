@@ -11,7 +11,7 @@
 
 ---
 
-The new version of LinerlyBot with discord.py.
+The new version of LinerlyBot with [discord.py](https://discordpy.readthedocs.io/en/stable).
 
 [![Invite LinerlyBot](https://img.shields.io/badge/-Add%20LinerlyBot%20to%20your%20Discord%20server!-1e90ff?style=for-the-badge)](https://discord.com/oauth2/authorize?client_id=529566778293223434&permissions=2147485696&scope=bot+applications.commands)
 
