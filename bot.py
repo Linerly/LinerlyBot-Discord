@@ -348,7 +348,7 @@ async def balance(ctx):
         icon_url="https://linerly.github.io/assets/linerlybot/linerlybot.png",
     )
 
-    embed.add_field(name=Gold, value=f"<:gold:752147412445036645> {gold[str(ctx.author.id)]}")
+    embed.add_field(name="Gold", value=f"<:gold:752147412445036645> {gold[str(ctx.author.id)]}")
     await ctx.send(embed=embed)
 
     with open("bank.json", "w") as write:
@@ -362,6 +362,51 @@ async def work(ctx):
 
     amount = random.randint(10, 100)
     job = "worker"
+    gold[str(ctx.author.id)] += amount
+
+    embed = discord.Embed(title="Working", color=0x1E90FF)
+    embed.set_author(
+        name="LinerlyBot",
+        url="https://linerly.github.io/linerlybot",
+        icon_url="https://linerly.github.io/assets/linerlybot/linerlybot.png",
+    )
+
+    embed.add_field(name="Gold", value=f"{ctx.message.author.mention()}, you've worked as a {job} and you got <:gold:752147412445036645> {amount} for working!")
+    await ctx.send(embed=embed)
+
+    with open("bank.json", "w") as write:
+        json.dump(gold, write, indent=2)
+
+
+@slash.slash(name="balance", description="Shows your current gold balance.")
+async def _balance(ctx):
+    with open("bank.json") as file:
+        gold = json.load(file)
+
+    if str(ctx.author.id) not in gold:
+        gold[str(ctx.author.id)] = 0
+
+    embed = discord.Embed(title="You currently have...", color=0x1E90FF)
+    embed.set_author(
+        name="LinerlyBot",
+        url="https://linerly.github.io/linerlybot",
+        icon_url="https://linerly.github.io/assets/linerlybot/linerlybot.png",
+    )
+
+    embed.add_field(name="Gold", value=f"<:gold:752147412445036645> {gold[str(ctx.author.id)]}")
+    await ctx.send(embed=embed)
+
+    with open("bank.json", "w") as write:
+        json.dump(gold, write, indent=2)
+
+
+@slash.slash(name="work", description="Get more gold by working.")
+async def _work(ctx):
+    with open("bank.json") as file:
+        gold = json.load(file)
+
+    amount = random.randint(10, 100)
+    job = random.choice(["game developer", "designer", "programmer", "singer", "bartender", "cashier", "janitor", "doctor", "YouTuber", "streamer", "construction worker", "mechanic", "carpenter", "nurse", "police officer", "lawyer", "developer", "graphics designer", "writer"])
     gold[str(ctx.author.id)] += amount
 
     embed = discord.Embed(title="Working", color=0x1E90FF)
