@@ -21,7 +21,7 @@ The new version of LinerlyBot with [discord.py](https://discordpy.readthedocs.io
 - Informational commands such as the `help`, `info`, `ping`, and the `about` command.
 - Fun commands such as the `joke` and the `feeling` command.
 - Other miscellaneous such as the `quote` command.
-- ~~Gold as the currency for LinerlyBot.~~ Still not working, for now.
+- Gold as the currency for LinerlyBot.
 
 ---
 

@@ -16,7 +16,7 @@ def home():
         <title>LinerlyBot Repl Page</title>
         </head>
 
-        <body style="width: 75%; margin: auto;">
+        <body style="width: 80%; margin: auto;">
         <style>
             figure message {
                 top: 0;
@@ -64,7 +64,7 @@ def home():
         <li>Informational commands such as the <code>help</code>, <code>info</code>, <code>ping</code>, and the <code>about</code> command.</li>
         <li>Fun commands such as the <code>joke</code> and the <code>feeling</code> command.</li>
         <li>Other miscellaneous such as the <code>quote</code> command.</li>
-        <li><s>Gold as the currency for LinerlyBot.</s> Still not working, for now.</li>
+        <li><s>Gold as the currency for LinerlyBot.</li>
         </ul>
         <hr>
         <h1>To-do</h1>

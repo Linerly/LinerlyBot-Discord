@@ -2,6 +2,7 @@ print("Preparing the bot...")
 import os
 import random
 import time
+import json
 from datetime import timedelta
 
 import discord
@@ -301,7 +302,9 @@ async def text(ctx, text=None):
             headers={"api-key": os.environ["DEEPAI_API_KEY"]},
         )
 
-        await ctx.send(f"**Raw JSON Output** \n*provided by DeepAI* \n```{str(r.json())}```")
+        await ctx.send(
+            f"**Raw JSON Output** \n*provided by DeepAI* \n```{str(r.json())}```"
+        )
 
 
 @slash.slash(
@@ -325,7 +328,54 @@ async def _text(ctx, text: str):
         headers={"api-key": os.environ["DEEPAI_API_KEY"]},
     )
 
-    await ctx.send(f"**Raw JSON Output** \n*provided by DeepAI* \n```{str(r.json())}```")
+    await ctx.send(
+        f"**Raw JSON Output** \n*provided by DeepAI* \n```{str(r.json())}```"
+    )
+
+
+@client.command()
+async def balance(ctx):
+    with open("bank.json") as file:
+        gold = json.load(file)
+
+    if str(ctx.author.id) not in gold:
+        gold[str(ctx.author.id)] = 0
+
+    embed = discord.Embed(title="You currently have...", color=0x1E90FF)
+    embed.set_author(
+        name="LinerlyBot",
+        url="https://linerly.github.io/linerlybot",
+        icon_url="https://linerly.github.io/assets/linerlybot/linerlybot.png",
+    )
+
+    embed.add_field(name=Gold, value=f"<:gold:752147412445036645> {gold[str(ctx.author.id)]}")
+    await ctx.send(embed=embed)
+
+    with open("bank.json", "w") as write:
+        json.dump(gold, write, indent=2)
+
+
+@client.command()
+async def work(ctx):
+    with open("bank.json") as file:
+        gold = json.load(file)
+
+    amount = random.randint(10, 100)
+    job = "worker"
+    gold[str(ctx.author.id)] += amount
+
+    embed = discord.Embed(title="Working", color=0x1E90FF)
+    embed.set_author(
+        name="LinerlyBot",
+        url="https://linerly.github.io/linerlybot",
+        icon_url="https://linerly.github.io/assets/linerlybot/linerlybot.png",
+    )
+
+    embed.add_field(name="Gold", value=f"{ctx.message.author.mention()}, you've worked as a {job} and you got <:gold:752147412445036645> {amount} for working!")
+    await ctx.send(embed=embed)
+
+    with open("bank.json", "w") as write:
+        json.dump(gold, write, indent=2)
 
 
 keep_alive()
