@@ -1,14 +1,14 @@
 print("Preparing the bot...")
+import json
 import os
+import platform
 import random
 import time
-import json
 from datetime import timedelta
 
 import discord
 import distro
 import pyjokes
-import platform
 import requests
 from discord.ext import commands
 from discord_slash import SlashCommand
@@ -32,6 +32,7 @@ async def on_ready():
         name="l!help - linerly.github.io/linerlybot", type=discord.ActivityType.playing
     )
     await client.change_presence(status=discord.Status.online, activity=activity)
+
     print("I should be ready now!")
 
 
@@ -348,7 +349,9 @@ async def balance(ctx):
         icon_url="https://linerly.github.io/assets/linerlybot/linerlybot.png",
     )
 
-    embed.add_field(name="Gold", value=f"<:gold:752147412445036645> {gold[str(ctx.author.id)]}")
+    embed.add_field(
+        name="Gold", value=f"<:gold:752147412445036645> {gold[str(ctx.author.id)]}"
+    )
     await ctx.send(embed=embed)
 
     with open("bank.json", "w") as write:
@@ -371,7 +374,10 @@ async def work(ctx):
         icon_url="https://linerly.github.io/assets/linerlybot/linerlybot.png",
     )
 
-    embed.add_field(name="Gold", value=f"{ctx.message.author.mention()}, you've worked as a {job} and you got <:gold:752147412445036645> {amount} for working!")
+    embed.add_field(
+        name="Gold",
+        value=f"{ctx.message.author.mention()}, you've worked as a {job} and you got <:gold:752147412445036645> {amount} for working!",
+    )
     await ctx.send(embed=embed)
 
     with open("bank.json", "w") as write:
@@ -393,7 +399,9 @@ async def _balance(ctx):
         icon_url="https://linerly.github.io/assets/linerlybot/linerlybot.png",
     )
 
-    embed.add_field(name="Gold", value=f"<:gold:752147412445036645> {gold[str(ctx.author.id)]}")
+    embed.add_field(
+        name="Gold", value=f"<:gold:752147412445036645> {gold[str(ctx.author.id)]}"
+    )
     await ctx.send(embed=embed)
 
     with open("bank.json", "w") as write:
@@ -406,7 +414,29 @@ async def _work(ctx):
         gold = json.load(file)
 
     amount = random.randint(10, 100)
-    job = random.choice(["game developer", "designer", "programmer", "singer", "bartender", "cashier", "janitor", "doctor", "YouTuber", "streamer", "construction worker", "mechanic", "carpenter", "nurse", "police officer", "lawyer", "developer", "graphics designer", "writer"])
+    job = random.choice(
+        [
+            "game developer",
+            "designer",
+            "programmer",
+            "singer",
+            "bartender",
+            "cashier",
+            "janitor",
+            "doctor",
+            "YouTuber",
+            "streamer",
+            "construction worker",
+            "mechanic",
+            "carpenter",
+            "nurse",
+            "police officer",
+            "lawyer",
+            "developer",
+            "graphics designer",
+            "writer",
+        ]
+    )
     gold[str(ctx.author.id)] += amount
 
     embed = discord.Embed(title="Working", color=0x1E90FF)
@@ -416,7 +446,10 @@ async def _work(ctx):
         icon_url="https://linerly.github.io/assets/linerlybot/linerlybot.png",
     )
 
-    embed.add_field(name="Gold", value=f"{ctx.message.author.mention()}, you've worked as a {job} and you got <:gold:752147412445036645> {amount} for working!")
+    embed.add_field(
+        name="Gold",
+        value=f"{ctx.message.author.mention()}, you've worked as a {job} and you got <:gold:752147412445036645> {amount} for working!",
+    )
     await ctx.send(embed=embed)
 
     with open("bank.json", "w") as write:
