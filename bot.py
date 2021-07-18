@@ -11,6 +11,7 @@ import distro
 import pyjokes
 import requests
 from discord.ext import commands
+from discord.ext.commands import BucketType
 from discord_slash import SlashCommand
 from discord_slash.utils.manage_commands import create_option
 from quoters import Quote
@@ -335,6 +336,7 @@ async def _text(ctx, text: str):
 
 
 @client.command()
+@commands.cooldown(rate = 1, per = 24 * 60 * 5, type = commands.BucketType.user)
 async def balance(ctx):
     with open("bank.json") as file:
         gold = json.load(file)
@@ -359,6 +361,7 @@ async def balance(ctx):
 
 
 @client.command()
+@commands.cooldown(rate = 1, per = 24 * 60 * 60, type = commands.BucketType.user)
 async def work(ctx):
     with open("bank.json") as file:
         gold = json.load(file)
@@ -454,7 +457,6 @@ async def _work(ctx):
 
     with open("bank.json", "w") as write:
         json.dump(gold, write, indent=2)
-
 
 keep_alive()
 client.run(os.environ["TOKEN"])
