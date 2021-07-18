@@ -458,5 +458,10 @@ async def _work(ctx):
     with open("bank.json", "w") as write:
         json.dump(gold, write, indent=2)
 
+@client.event
+async def on_command_error(ctx, error):
+    if isinstance(error, commands.CommandOnCooldown):
+        await ctx.send(error)
+
 keep_alive()
 client.run(os.environ["TOKEN"])

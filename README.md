@@ -28,7 +28,7 @@ The new version of LinerlyBot with [discord.py](https://discordpy.readthedocs.io
 # To-do
 - Adding moderation commands, plus some other miscellaneous commands as well.
 - Adding a shop feature where you can spend gold on.
-- Adding cooldowns to some commands (like the `work` and `balance` command).
+- ~~Adding cooldowns to some commands (like the `work` and `balance` command).~~
 
 ---
 
