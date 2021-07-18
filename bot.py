@@ -336,7 +336,7 @@ async def _text(ctx, text: str):
 
 
 @client.command()
-@commands.cooldown(rate = 1, per = 24 * 60 * 5, type = commands.BucketType.user)
+@commands.cooldown(rate = 1, per = 5, type = commands.BucketType.user)
 async def balance(ctx):
     with open("bank.json") as file:
         gold = json.load(file)
