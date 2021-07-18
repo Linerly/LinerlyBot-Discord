@@ -27,12 +27,13 @@ The new version of LinerlyBot with [discord.py](https://discordpy.readthedocs.io
 
 # To-do
 - Adding moderation commands, plus some other miscellaneous commands as well.
+- Adding a shop feature where you can spend gold on.
+- Adding ratelimits to some commands (like the `work` and `balance` command).
 
 ---
 
 # Some issue(s) when using LinerlyBot
 - Occasionally, you might get the "Invalid interaction application command" error when using some slash commands, if you try again, it will work again like normal.
-- Currency commands don't really work just yet, I haven't figure out how to handle the `KeyError` error.
 
 ---
 
