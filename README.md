@@ -39,7 +39,9 @@ The new version of LinerlyBot with [discord.py](https://discordpy.readthedocs.io
 
 # Extra notes
 - Now LinerlyBot is hosted on Replit.
-- LinerlyBot also uses the [Replit Database](https://docs.replit.com/misc/database) as well.
+- Due to some issues with Replit's Database, now LinerlyBot uses JSON for storing the data since the bot is quite small anyway.
+
+(I may forget to update README.md every time I changed something to the bot's code, so please be aware about that)
 
 ---
 
