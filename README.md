@@ -28,7 +28,7 @@ The new version of LinerlyBot with [discord.py](https://discordpy.readthedocs.io
 # To-do
 - Adding moderation commands, plus some other miscellaneous commands as well.
 - Adding a shop feature where you can spend gold on.
-- Adding ratelimits to some commands (like the `work` and `balance` command).
+- Adding cooldowns to some commands (like the `work` and `balance` command).
 
 ---
 
@@ -55,6 +55,5 @@ Here is a list of the additional Python libraries used for LinerlyBot.
 - [pyjokes](https://pypi.org/project/pyjokes/) - for providing the jokes for the `joke` command
 - [quoters](https://pypi.org/project/quoters/) - for providing random quotes for the `quote` command
 - [webserver](https://pypi.org/project/webserver/) - for keeping the bot online (`keep_alive()`)
-- [replit](https://pypi.org/project/replit/) -  just for providing the [Replit Database](https://docs.replit.com/misc/database) client
 
 (there might be more, just look at the [poetry.lock](https://github.com/Linerly/linerlybot-rewritten/blob/master/poetry.lock) file if you want)
