@@ -376,7 +376,7 @@ async def work(ctx):
 
     embed.add_field(
         name="Gold",
-        value=f"{ctx.message.author.mention()}, you've worked as a {job} and you got <:gold:752147412445036645> {amount} for working!",
+        value=f"{ctx.message.author.mention}, you've worked as a {job} and you got <:gold:752147412445036645> {amount} for working!",
     )
     await ctx.send(embed=embed)
 
