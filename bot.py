@@ -29,11 +29,6 @@ async def on_ready():
     global start_time
     start_time = time.time()
 
-    activity = discord.Activity(
-        name="l!help - linerly.github.io/linerlybot", type=discord.ActivityType.playing
-    )
-    await client.change_presence(status=discord.Status.online, activity=activity)
-
     print("I should be ready now!")
 
 
