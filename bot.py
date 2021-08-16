@@ -18,6 +18,65 @@ from quoters import Quote
 
 from webserver import keep_alive
 
+
+
+def splitTime(seconds:int) -> list:
+    "Split time into decades, years, months, weeks, days, hours, minutes, and seconds."
+    seconds = int(seconds)
+    def modTime(sec, num):
+        smod = sec % num
+        return int((sec - smod) // num), smod
+    divs = (15768000000000000,
+            3153600000000000,
+            315360000000000,
+            31536000000000,
+            31536000000,
+            3153600000,
+            315360000,
+            31536000,
+            2628000,
+            604800,
+            86400,
+            3600,
+            60,
+            1)
+    ret = []
+    for num in divs:
+        t, seconds = modTime(seconds, num)
+        ret.append(t)
+    return ret
+
+def combineAnd(data:list) -> str:
+    "Join values of text, and have 'and' with the last one properly."
+    data = list(data)
+    if len(data) >= 2:
+        data[-1] = 'and ' + data[-1]
+    if len(data) > 2:
+        return ', '.join(data)
+    return ' '.join(data)
+
+def printTime(seconds:int, singleTitleAllowed:bool=True) -> str:
+    "Returns time using the output of splitTime."
+    times = ('eons', 'eras', 'epochs', 'ages', 'millenniums',
+             'centuries', 'decades', 'years', 'months', 'weeks',
+             'days', 'hours', 'minutes', 'seconds')
+    single = [i[:-1] for i in times]
+    single[5] = 'century'
+    split = splitTime(seconds)
+    zipidxvalues = [(idx, split[idx]) for idx in range(len(split)) if split[idx]]
+    if singleTitleAllowed:
+        if len(zipidxvalues) == 1:
+            index, value = zipidxvalues[0]
+            if value == 1:
+                return single[index]
+    data = []
+    for index, value in zipidxvalues:
+        title = single[index] if abs(value) < 2 else times[index]
+        data.append(str(value)+' '+title)
+    return combineAnd(data)
+
+
+
 client = commands.Bot(command_prefix="l!", help_command=None)
 slash = SlashCommand(client, sync_commands=True)
 
@@ -456,7 +515,16 @@ async def _work(ctx):
 @client.event
 async def on_command_error(ctx, error):
     if isinstance(error, commands.CommandOnCooldown):
-        await ctx.send(error)
+        try:
+            if error.startswith('You are on cooldown. Try again in'):
+                secs = error[34:]
+                if secs.endswith('s'):
+                    secs = time[:-1]
+                secs = int(float(secs))
+                newerror = f'You are on cooldown. Try again in {printTime(secs)}.'
+                await ctx.send(newerror)
+        except:
+            await ctx.send(error)
 
 keep_alive()
 client.run(os.environ["TOKEN"])
