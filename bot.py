@@ -19,49 +19,67 @@ from quoters import Quote
 from webserver import keep_alive
 
 
-
-def splitTime(seconds:int) -> list:
+def splitTime(seconds: int) -> list:
     "Split time into decades, years, months, weeks, days, hours, minutes, and seconds."
     seconds = int(seconds)
+
     def modTime(sec, num):
         smod = sec % num
         return int((sec - smod) // num), smod
-    divs = (15768000000000000,
-            3153600000000000,
-            315360000000000,
-            31536000000000,
-            31536000000,
-            3153600000,
-            315360000,
-            31536000,
-            2628000,
-            604800,
-            86400,
-            3600,
-            60,
-            1)
+
+    divs = (
+        15768000000000000,
+        3153600000000000,
+        315360000000000,
+        31536000000000,
+        31536000000,
+        3153600000,
+        315360000,
+        31536000,
+        2628000,
+        604800,
+        86400,
+        3600,
+        60,
+        1,
+    )
     ret = []
     for num in divs:
         t, seconds = modTime(seconds, num)
         ret.append(t)
     return ret
 
-def combineAnd(data:list) -> str:
+
+def combineAnd(data: list) -> str:
     "Join values of text, and have 'and' with the last one properly."
     data = list(data)
     if len(data) >= 2:
-        data[-1] = 'and ' + data[-1]
+        data[-1] = "and " + data[-1]
     if len(data) > 2:
-        return ', '.join(data)
-    return ' '.join(data)
+        return ", ".join(data)
+    return " ".join(data)
 
-def printTime(seconds:int, singleTitleAllowed:bool=True) -> str:
+
+def printTime(seconds: int, singleTitleAllowed: bool = True) -> str:
     "Returns time using the output of splitTime."
-    times = ('eons', 'eras', 'epochs', 'ages', 'millenniums',
-             'centuries', 'decades', 'years', 'months', 'weeks',
-             'days', 'hours', 'minutes', 'seconds')
+    times = (
+        "eons",
+        "eras",
+        "epochs",
+        "ages",
+        "millenniums",
+        "centuries",
+        "decades",
+        "years",
+        "months",
+        "weeks",
+        "days",
+        "hours",
+        "minutes",
+        "seconds",
+    )
     single = [i[:-1] for i in times]
-    single[5] = 'century'
+    single[5] = "century"
     split = splitTime(seconds)
     zipidxvalues = [(idx, split[idx]) for idx in range(len(split)) if split[idx]]
     if singleTitleAllowed:
@@ -72,9 +90,8 @@ def printTime(seconds:int, singleTitleAllowed:bool=True) -> str:
     data = []
     for index, value in zipidxvalues:
         title = single[index] if abs(value) < 2 else times[index]
-        data.append(str(value)+' '+title)
+        data.append(str(value) + " " + title)
     return combineAnd(data)
-
 
 
 client = commands.Bot(command_prefix="l!", help_command=None)
@@ -390,7 +407,7 @@ async def _text(ctx, text: str):
 
 
 @client.command()
-@commands.cooldown(rate = 1, per = 5, type = commands.BucketType.user)
+@commands.cooldown(rate=1, per=5, type=commands.BucketType.user)
 async def balance(ctx):
     with open("bank.json") as file:
         gold = json.load(file)
@@ -415,7 +432,7 @@ async def balance(ctx):
 
 
 @client.command()
-@commands.cooldown(rate = 1, per = 24 * 60 * 60, type = commands.BucketType.user)
+@commands.cooldown(rate=1, per=24 * 60 * 60, type=commands.BucketType.user)
 async def work(ctx):
     with open("bank.json") as file:
         gold = json.load(file)
@@ -512,19 +529,18 @@ async def _work(ctx):
     with open("bank.json", "w") as write:
         json.dump(gold, write, indent=2)
 
+
 @client.event
 async def on_command_error(ctx, error):
     if isinstance(error, commands.CommandOnCooldown):
-        try:
-            if error.startswith('You are on cooldown. Try again in'):
-                secs = error[34:]
-                if secs.endswith('s'):
-                    secs = time[:-1]
-                secs = int(float(secs))
-                newerror = f'You are on cooldown. Try again in {printTime(secs)}.'
-                await ctx.send(newerror)
-        except:
-            await ctx.send(error)
+        if str(error).startswith("You are on cooldown. Try again in"):
+            secs = str(error)[34:]
+        if secs.endswith("s"):
+            secs = secs[:-1]
+        secs = int(float(secs))
+        newerror = f"You are on cooldown. Try again in {printTime(secs)}."
+        await ctx.send(newerror)
+
 
 keep_alive()
 client.run(os.environ["TOKEN"])
