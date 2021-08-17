@@ -1,1 +1,8 @@
+# Ignore database (JSON) files
 bank.json
+
+# Ignore the __pycache__ directory
+__pycache__/
+
+# Ignore packager file(s)
+poetry.lock
