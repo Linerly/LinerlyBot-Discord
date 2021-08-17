@@ -11,7 +11,6 @@ import distro
 import pyjokes
 import requests
 from discord.ext import commands
-from discord.ext.commands import BucketType
 from discord_slash import SlashCommand
 from discord_slash.utils.manage_commands import create_option
 from quoters import Quote
@@ -94,7 +93,9 @@ def printTime(seconds: int, singleTitleAllowed: bool = True) -> str:
     return combineAnd(data)
 
 
-client = commands.Bot(command_prefix="l!", help_command=None)
+client = commands.Bot(
+    intents=discord.Intents.all(), command_prefix="l!", help_command=None
+)
 slash = SlashCommand(client, sync_commands=True)
 
 client.remove_command("help")
@@ -432,13 +433,36 @@ async def balance(ctx):
 
 
 @client.command()
-@commands.cooldown(rate=1, per=24 * 60 * 60, type=commands.BucketType.user)
+@commands.cooldown(rate=1, per=900, type=commands.BucketType.user)
 async def work(ctx):
     with open("bank.json") as file:
         gold = json.load(file)
 
-    amount = random.randint(10, 100)
-    job = "worker"
+    amount = random.randint(100, 750)
+    job = random.choice(
+        [
+            "game developer",
+            "designer",
+            "programmer",
+            "singer",
+            "bartender",
+            "cashier",
+            "janitor",
+            "doctor",
+            "YouTuber",
+            "streamer",
+            "construction worker",
+            "mechanic",
+            "carpenter",
+            "nurse",
+            "police officer",
+            "lawyer",
+            "developer",
+            "graphics designer",
+            "writer",
+        ]
+    )
+
     gold[str(ctx.author.id)] += amount
 
     embed = discord.Embed(title="Working", color=0x1E90FF)
@@ -475,54 +499,6 @@ async def _balance(ctx):
 
     embed.add_field(
         name="Gold", value=f"<:gold:752147412445036645> {gold[str(ctx.author.id)]}"
-    )
-    await ctx.send(embed=embed)
-
-    with open("bank.json", "w") as write:
-        json.dump(gold, write, indent=2)
-
-
-@slash.slash(name="work", description="Get more gold by working.")
-async def _work(ctx):
-    with open("bank.json") as file:
-        gold = json.load(file)
-
-    amount = random.randint(10, 100)
-    job = random.choice(
-        [
-            "game developer",
-            "designer",
-            "programmer",
-            "singer",
-            "bartender",
-            "cashier",
-            "janitor",
-            "doctor",
-            "YouTuber",
-            "streamer",
-            "construction worker",
-            "mechanic",
-            "carpenter",
-            "nurse",
-            "police officer",
-            "lawyer",
-            "developer",
-            "graphics designer",
-            "writer",
-        ]
-    )
-    gold[str(ctx.author.id)] += amount
-
-    embed = discord.Embed(title="Working", color=0x1E90FF)
-    embed.set_author(
-        name="LinerlyBot",
-        url="https://linerly.github.io/linerlybot",
-        icon_url="https://linerly.github.io/assets/linerlybot/linerlybot.png",
-    )
-
-    embed.add_field(
-        name="Gold",
-        value=f"{ctx.message.author.mention}, you've worked as a {job} and you got <:gold:752147412445036645> {amount} for working!",
     )
     await ctx.send(embed=embed)
 
