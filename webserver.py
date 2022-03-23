@@ -12,33 +12,11 @@ def home():
         <html>
 
         <head>
-        <link rel="icon" href="https://linerly.github.io/assets/linerlybot/linerlybot.png" type="image/png">
-        <title>LinerlyBot Repl Page</title>
+        <link rel="icon" href="https://linerly.tk/assets/linerlybot/linerlybot.png" type="image/png">
+        <title>LinerlyBot</title>
         </head>
 
         <body style="width: 80%; margin: auto;">
-        <style>
-            figure message {
-                top: 0;
-                left: 0;
-                position: absolute;
-            }
-        </style>
-  
-        <style>
-            #message {
-                margin: 0;
-                padding: 12px 15px;
-                background-color: #1e90ff;
-                color: #fff;
-                text-align: center;
-                font-family: sans-serif;
-                font-size: 13px;
-            }
-        </style>
-
-        <p id="message">You're in LinerlyBot's Replit site. <a href="https://linerly.github.io/linerlybot">Click here to go to LinerlyBot's main page!</a></p>
-
         <br>
 
         <img alt="LinerlyBot logo" src="https://raw.githubusercontent.com/Linerly/linerlybot-rewritten/master/profile-picture.png" style="display: block; margin-left: auto; margin-right: auto; border-radius: 50%;" width="128" height="128">
@@ -46,7 +24,6 @@ def home():
         <h2 align="center">linerlybot-rewritten</h2>
 
         <p align="center">
-            <a href="https://discord.gg/a9Sy7gE"><img alt="Discord Server" src="https://img.shields.io/discord/551683447026876418?logoColor=1e90ff&style=flat"></a>
             <a href="https://github.com/Linerly/linerlybot-rewritten/blob/master/LICENSE"><img alt="License" src="https://img.shields.io/github/license/Linerly/linerlybot-rewritten?style=flat"></a>
             <a href="https://github.com/psf/black"><img alt="Code style: black" src="https://img.shields.io/badge/code%20style-black-000000.svg?style=flat"></a>
             <a href="https://pycqa.github.io/isort/"><img alt="Imports: isort" src="https://img.shields.io/badge/%20imports-isort-%231674b1?style=flat&labelColor=ef8336"></a>

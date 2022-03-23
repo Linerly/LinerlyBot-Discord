@@ -3,7 +3,6 @@
 <h2 align="center">linerlybot-rewritten</h2>
 
 <p align="center">
-    <a href="https://discord.gg/a9Sy7gE"><img alt="Discord Server" src="https://img.shields.io/discord/551683447026876418?logoColor=1e90ff&style=flat"></a>
     <a href="https://github.com/Linerly/linerlybot-rewritten/blob/master/LICENSE"><img alt="License" src="https://img.shields.io/github/license/Linerly/linerlybot-rewritten?style=flat"></a>
     <a href="https://github.com/psf/black"><img alt="Code style: black" src="https://img.shields.io/badge/code%20style-black-000000.svg?style=flat"></a>
     <a href="https://pycqa.github.io/isort/"><img alt="Imports: isort" src="https://img.shields.io/badge/%20imports-isort-%231674b1?style=flat&labelColor=ef8336"></a>
